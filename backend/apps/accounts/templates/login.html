@@ -1,0 +1,51 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+<!--{% block title %}-->
+<!--	CLogin-->
+<!--{% endblock title %}-->
+
+{% block content %}
+
+<form class="card card-md" method="post">
+    {% csrf_token %}
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Зайдите на свой аккаунт</h2>
+      <div class="mb-3">
+        <label class="form-label">Почтовый адрес</label>
+        {{ form.email }}
+      </div>
+      <div class="mb-2">
+        <label class="form-label">
+          Пароль
+
+        </label>
+        <div class="input-group input-group-flat">
+        {{form.password}}
+          <span class="input-group-text">
+            <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+            </a>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary w-200">Sign in</button>
+      </div>
+
+    </div>
+  </form>
+  <div class="text-center text-muted mt-3">
+    Ещё не зарегистрированны? <a href="{% url 'register' %}" tabindex="-1">Зарегистрироваться</a>
+  </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
