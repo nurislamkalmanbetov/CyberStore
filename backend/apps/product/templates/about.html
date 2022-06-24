@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+    <!-- Page Header Start -->
+    <div style="height: 55vh;" class="container-fluid page-header py-6 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center pt-5 pb-3">
+            <h1 style="color: #f5d39b !important;" class="display-4 text-white animated slideInDown mb-3">About Us</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a style="color: #EAA636 !important;" class="text-white" href="{% url 'main_page' %}">Home</a></li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page"><a style="color: #EAA636 !important;" class="text-white" href="{% url 'about' %}">About</a></li>
+                    <li class="breadcrumb-item"><a style="color: #EAA636 !important;" class="text-white" href="{% url 'contact' %}">Contact</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- About Start -->
+    <div class="container-xxl py-6">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="row img-twice position-relative h-100">
+                        <div class="col-6">
+                            <img class="img-fluid rounded" src="{% static 'img/iphones1.webp' %}" alt="">
+                        </div>
+                        <div class="col-6 align-self-end">
+                            <img style="    " class="img-fluid rounded" src="{% static 'img/applewatches2.jpeg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="h-100">
+                        <p style="color: #EAA636 !important;" class="text-primary text-uppercase mb-2">About Us</p>
+                        <h1 style="color: #EAA636 !important;" class="display-6 mb-4">We sell only high quality products!</h1>
+                        <p style="color: #EAA636 !important;">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                        <div class="row g-2 mb-4">
+                            <div class="col-sm-6">
+                                <i style="color: forestgreen !important;" class="fa fa-check text-primary me-2"></i>Quality Products
+                            </div>
+                            <div class="col-sm-6">
+                                <i style="color: forestgreen !important;" class="fa fa-check text-primary me-2"></i>Custom Products
+                            </div>
+                            <div class="col-sm-6">
+                                <i style="color: forestgreen !important;" class="fa fa-check text-primary me-2"></i>Online Order
+                            </div>
+                            <div class="col-sm-6">
+                                <i style="color: forestgreen !important;" class="fa fa-check text-primary me-2"></i>Home Delivery
+                            </div>
+                        </div>
+                        <a class="btn btn-primary rounded-pill py-3 px-5" href="">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Team Start -->
+    <div class="container-xxl py-6">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p style="color: #EAA636 !important;" class="text-primary text-uppercase mb-2"> Our Team</p>
+                <h1 style="margin-left: 5px; color: #EAA636 !important;" class="display-6 mb-4">We're Super Professional At Our Skills</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-fluid" src="{% static 'img/aaron.jpeg' %}" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5 style="margin-left: 5px; color: #EAA636 !important;">Mr Aaron</h5>
+                                <h4 style="margin-left: 5px; color: #EAA636 !important;">Director</h4>
+                                <span>Designation</span>
+                            </div>
+                            <div class="team-social">
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.facebook}}"><i class="fab fa-facebook-f" style="color: #0d6efd !important;"></i></a>
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.twit}}"><i class="fab fa-whatsapp" style="color: forestgreen !important;"></i></a>
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.linkedin}}"><i class="fab fa-linkedin-in" style="color: #393f81 !important;"></i></a>
+                                <a class="btn-lg-square text-primary pe-0" href="{{links.ins}}"><i class="fab fa-instagram" style="color: red !important;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-fluid" src="{% static 'img/jake.jpeg' %}" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5 style="margin-left: 5px; color: #EAA636 !important;">Mr Jake</h5>
+                                <h4 style="margin-left: 5px; color: #EAA636 !important;">Founder</h4>
+                                <span>Designation</span>
+                            </div>
+                            <div class="team-social">
+                                <!--                            <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>-->
+                                <!--                            <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-twitter"></i></a>-->
+                                <!--                            <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-instagram"></i></a>-->
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.facebook}}"><i class="fab fa-facebook-f" style="color: #0d6efd !important;"></i></a>
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.twit}}"><i class="fab fa-whatsapp" style="color: forestgreen !important;"></i></a>
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.linkedin}}"><i class="fab fa-linkedin-in" style="color: #393f81 !important;"></i></a>
+                                <a class="btn-lg-square text-primary pe-0" href="{{links.ins}}"><i class="fab fa-instagram" style="color: red !important;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-fluid" src="{% static 'img/belford.jpeg' %}" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5 style="margin-left: 5px; color: #EAA636 !important;">Mr Belford</h5>
+                                <h4 style="margin-left: 5px; color: #EAA636 !important;">Founder</h4>
+                                <span>Designation</span>
+                            </div>
+                            <div class="team-social">
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.facebook}}"><i class="fab fa-facebook-f" style="color: #0d6efd !important;"></i></a>
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.twit}}"><i class="fab fa-whatsapp" style="color: forestgreen !important;"></i></a>
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.linkedin}}"><i class="fab fa-linkedin-in" style="color: #393f81 !important;"></i></a>
+                                <a class="btn-lg-square text-primary pe-0" href="{{links.ins}}"><i class="fab fa-instagram" style="color: red !important;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-fluid" src="{% static 'img/nikolay.jpeg' %}" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5 style="margin-left: 5px; color: #EAA636 !important;">Mr Nickolay</h5>
+                                <h4 style="margin-left: 5px; color: #EAA636 !important;">Sales Manager</h4>
+                                <span>Designation</span>
+                            </div>
+                            <div class="team-social">
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.facebook}}"><i class="fab fa-facebook-f" style="color: #0d6efd !important;"></i></a>
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.twit}}"><i class="fab fa-whatsapp" style="color: forestgreen !important;"></i></a>
+                                <a class="btn-lg-square text-primary border-end rounded-0" href="{{links.linkedin}}"><i class="fab fa-linkedin-in" style="color: #393f81 !important;"></i></a>
+                                <a class="btn-lg-square text-primary pe-0" href="{{links.ins}}"><i class="fab fa-instagram" style="color: red !important;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+        <!-- Testimonial Start -->
+    <div class="container-xxl bg-light my-6 py-3 pb-0">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px; display: flex; justify-content: center;">
+            </div>
+            <div id="map" style="width: 100%; height: 400px"></div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+
+{% endblock %}

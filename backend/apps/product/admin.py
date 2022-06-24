@@ -12,23 +12,6 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug":('name',)}
 
 
-@admin.register(SubCategory)
-class SubCategory(admin.ModelAdmin):
-    list_display = (
-        'name',
-        'category',
-        'slug',
-        'id'
-        )
-    prepopulated_fields = {"slug":('name',)}
-    list_filter = (
-        "category",
-    )
-    search_fields = (
-        "id",
-        "name",
-    )
-
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -37,8 +20,11 @@ class ProductAdmin(admin.ModelAdmin):
         'price',
         'image',
         'category',
-        'subcategory',
         'created',
         'updated',
         'is_active'
     ]
+
+@admin.register(MyLinks)
+class MyLinkAdmin(admin.ModelAdmin):
+    list_display = ['facebook']

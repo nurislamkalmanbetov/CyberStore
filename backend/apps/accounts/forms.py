@@ -7,13 +7,13 @@ from django.contrib.auth.forms import UserCreationForm
 class LoginForm(forms.Form):
     email = forms.EmailField(
         label="Электронная почта",
-        widget=forms.EmailInput(attrs={"class": "form-control"})
+        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "email"})
     )
     password = forms.CharField(
         label="Пароль",
         widget=forms.PasswordInput(
             attrs={
-                "class": "form-control",
+                "class": "form-control form-control-lg",
                 "type": "password",
                 "autocomplete": "off",
                 "placeholder": "Пароль"
@@ -24,7 +24,7 @@ class LoginForm(forms.Form):
 
 class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "form-control"})
+        widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder":'Пароль'})
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(attrs={"class": "form-control"})
@@ -49,3 +49,25 @@ class UserRegisterForm(UserCreationForm):
 
         }
     # Для сравнения двух паролей после ввода пароля
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'middle_name',
+            'phone',
+            # 'avatar',
+        ]
+        widgets = {
+            "first_name": forms.TextInput(attrs={"class": "form-control"}),
+            "last_name": forms.TextInput(attrs={"class": "form-control"}),
+            "middle_name": forms.TextInput(attrs={"class": "form-control"}),
+            "phone": forms.TextInput(attrs={"class": "form-control"}),
+            # "avatar": forms.FileInput(attrs={"class": "form-control"})
+        }
+
+
+

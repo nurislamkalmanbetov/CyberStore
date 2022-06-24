@@ -1,4 +1,5 @@
 from django.db import models
+from backend.apps.accounts.models import User
 
 
 # Create your models here.
@@ -17,22 +18,6 @@ class Category(models.Model):
         return self.name
 
 
-class SubCategory(models.Model):
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        related_name="subcategories"
-    )
-    name = models.CharField("Название", max_length=70, unique=True)
-    slug = models.SlugField("Слаг", max_length=80, unique=True)
-
-    class Meta:
-        verbose_name = "Подкатегория"
-        verbose_name_plural = "Подкатегории"
-        ordering = ['category', 'name']
-
-    def __str__(self):
-        return self.name
 
 
 class Product(models.Model):
@@ -49,14 +34,10 @@ class Product(models.Model):
         on_delete=models.PROTECT,
         related_name="products"
     )
-    subcategory = models.ForeignKey(
-        SubCategory,
-        on_delete=models.PROTECT,
-        related_name="products"
-    )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField("Активный", default=True)
+    favorite = models.ManyToManyField(User, blank=True, related_name='favorite')
 
     class Meta:
         verbose_name = "Товар"
@@ -65,3 +46,21 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MyLinks(models.Model):
+    facebook = models.URLField('Facebook')
+    twit = models.URLField('twitter')
+    linkedin = models.URLField('linkedin')
+    ins = models.URLField('instagram')
+    created = models.DateTimeField(auto_now_add=True)
+
+
+    class Meta:
+        verbose_name = "мои ссылку"
+        verbose_name_plural = "ссылки"
+        ordering = ['-created']
+        get_latest_by = ['created']
+
+    def __str__(self):
+        return self.facebook

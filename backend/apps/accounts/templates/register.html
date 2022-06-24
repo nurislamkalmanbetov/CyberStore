@@ -1,71 +1,104 @@
-{% extends 'base_dashboard.html' %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
+</head>
+<body>
 
-{% block content %}
-<form class="card card-md"  method="post">
+  <section style="background-color: #3f3f3f ;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3" method="post">
     {% csrf_token %}
-    <div class="card-body">
-      <h2 class="card-title text-center mb-4">Создание аккаунта</h2>
-      {% if form.errors %}
-      {% for field in form %}
-          {% for error in field.errors %}
-             <div class="alert alert-danger">
-                  <strong>{{ error|escape }}</strong>
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5" method="post">
+              {% csrf_token %}
+              <h2 class="text-uppercase text-center mb-5">Создание аккаунта</h2>
+              {% if form.errors %}
+              {% for field in form %}
+                  {% for error in field.errors %}
+                     <div class="alert alert-danger">
+                          <strong>{{ error|escape }}</strong>
+                        </div>
+                      {% endfor %}
+                  {% endfor %}
+              {% endif %}
+
+              <form method="post">
+
+
+                  {% csrf_token %}
+                <div class="mb-3">
+                  <label class="form-label">Имя</label>
+                  {{form.first_name}}
                 </div>
-              {% endfor %}
-          {% endfor %}
-      {% endif %}
-      <div class="mb-3">
-        <label class="form-label">Имя</label>
-        {{form.first_name}}
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Фамилия</label>
-        {{form.last_name}}
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Отчество</label>
-        {{form.middle_name}}
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Почтовый адрес</label>
-        {{form.email}}
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Номер телефона</label>
-        {{form.phone}}
-      </div>
+                <div class="mb-3">
+                  <label class="form-label">Фамилия</label>
+                  {{form.last_name}}
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Отчество</label>
+                  {{form.middle_name}}
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Почтовый адрес</label>
+                  {{form.email}}
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Номер телефона</label>
+                  {{form.phone}}
+                </div>
 
+                <div class="mb-3">
+                  <label class="form-label">Пароль</label>
+                  <div class="input-group input-group-flat">
+                    {{ form.password1  }}
+                    <span class="input-group-text">
+                      <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Повторите пароль</label>
+                  <div class="input-group input-group-flat">
+                    {{ form.password2  }}
+                    <span class="input-group-text">
+                      <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                      </a>
+                    </span>
+                  </div>
+                </div>
 
+                <div class="form-footer">
+                  <button type="submit" class="btn btn-primary w-100">Регистрация</button>
+                </div>
 
-      <div class="mb-3">
-        <label class="form-label">Пароль</label>
-        <div class="input-group input-group-flat">
-          {{ form.password1  }}
-          <span class="input-group-text">
-            <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
-            </a>
-          </span>
+              </form>
+              <p class="text-center text-muted mt-5 mb-0">Уже имеется аккаунт? <a href="{% url 'sign_in' %}"
+                    class="fw-bold text-body"><u>Войти на ауккаунт</u></a></p>
+
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label"> Повторите  пароль</label>
-        <div class="input-group input-group-flat">
-          {{ form.password2  }}
-          <span class="input-group-text">
-            <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
-            </a>
-          </span>
-        </div>
-      </div>
-      <div class="form-footer">
-        <button type="submit" class="btn btn-primary w-100">Регистрация</button>
       </div>
     </div>
-  </form>
-  <div class="text-center text-muted mt-3">
-    Уже имеется аккаунт? <a href="{% url 'sign_in' %}" tabindex="-1">Войти</a>
   </div>
-{% endblock %}
+</section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
+
+

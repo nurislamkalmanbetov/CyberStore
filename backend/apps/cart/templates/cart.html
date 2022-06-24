@@ -4,122 +4,343 @@
 
 {% block content %}
 
-<div class="col-12">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title">Корзина</h3>
-      </div>
-      <div class="table-responsive">
-        <table class="table card-table table-vcenter text-nowrap datatable table-striped">
-          <thead>
-            <tr>
-              <th class="w-1">N. <!-- Download SVG icon from http://tabler-icons.io/i/chevron-up -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-sm text-dark icon-thick" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="6 15 12 9 18 15" /></svg>
-              </th>
-              <th>Фото</th>
-              <th>Название</th>
-              <th>Цена(шт.)</th>
-              <th>Количество</th>
-              <th>Общая цена</th>
-              <th>Действия</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in cart %}
-
-                <tr>
-                <td><span class="text-muted">{{item.product.id}}</span></td>
-                <td>
-                    <img src="{{ item.product.image.url }}" alt="" width="50">
-                </td>
-                <td>
-                    <a href="invoice.html" class="text-reset" tabindex="-1">
-                        {{item.product.name}}
-                    </a>
-                </td>
-                <td>
-                    {{item.price}}
-                </td>
-                <td>
-                  <button type="button" id="1" class="button-minus" data-id="{{item.product.id}}">
-                    <i class="ti ti-minus"></i>
-                  </button>
-                    {{item.quantity}}
-                    <button type="button" class="button-plus" data-id="{{item.product.id}}">
-                      <i class="ti ti-plus"></i>
-                    </button>
-                </td>
-                <td>{{item.total_price}}сом</td>
-                <td>
-                    <a href="{% url 'remove_cart' item.product.id %}" class="btn btn-danger active w-200">
-                    Удалить
-                    </a>
-
-                </td>
-                </tr>
-
-            {% empty %}
-                <tr>
-                    <td>
-                        Ваша корзина пустая
-                    </td>
-                </tr>
-            {% endfor %}
+<!--New cart-->
 
 
-          </tbody>
-        </table>
-      </div>
+<section  class="h-100 gradient-custom">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center my-4">
 
-      <div class="card-footer d-flex">
-          <h5>Общая цена:{{cart.get_total_price}}</h5>
-      </div>
+            <div class="col-md-8">
+                <div class="card mb-4">
 
-      <div class="card-footer d-flex align-items-center">
+                    <div class="card-header py-3" style="background: gray">
+                        <h5 style="color: #EAA636 !important;" class="mb-0">Your cart</h5>
+                    </div>
+                    {% for item in cart %}
+                    <div class="card-body" style="background: #e9ecef">
+                        <!-- Single item -->
+                        <div class="row">
+                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                <!-- Image -->
+                                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                    <img src="{{ item.product.image.url }}"
+                                         class="w-100" alt="Blue Jeans Jacket" />
+                                    <a href="#!">
+                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                    </a>
+                                </div>
+                                <!-- Image -->
+                            </div>
 
-        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3">
-            <a href="{% url 'clear_cart' %}" class="btn btn-light active w-40">
-              Очистить корзину
-            </a>
+                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                <!-- Data -->
+                                <p><strong style="color: #EAA636 !important;">{{item.product.name}}</strong></p>
+                                <p style="color: #EAA636 !important;">{{item.product.description}}</p>
+
+                                <a class="btn btn-primary btn-sm me-1 mb-2" href="{% url 'remove_cart' item.product.id %}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                <!-- Quantity -->
+                                <div class="d-flex mb-4" style="max-width: 300px">
+                                    <button class="btn btn-primary px-3 me-2 button-minus" data-id="{{item.product.id}}">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+
+                                    <div class="form-outline">
+                                        <label style="color: #EAA636 !important;" class="form-label" for="form1">{{item.quantity}}</label>
+                                    </div>
+
+                                    <button class="btn btn-primary px-3 ms-2 button-plus" data-id="{{item.product.id}}">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <!-- Quantity -->
+
+                                <!-- Price -->
+                                <p class="text-start text-md-center">
+                                    <strong style="color: #EAA636 !important;">{{item.total_price }} $ USD</strong>
+                                </p>
+                                <!-- Price -->
+                            </div>
+                        </div>
+                        <!-- Single item -->
+
+                        <hr class="my-4" />
+
+                    </div>
+
+                    {% empty %}
+                    <tr>
+                        <td>
+                            <strong  style="color: #EAA636 !important;">
+                                Ваша корзина пустая
+                            </strong>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header py-3" style="background: gray">
+                        <h5 class="mb-0">Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong style="color: #EAA636 !important;" >We accept</strong></p>
+                        <img class="me-2" width="80px"
+                             src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                             alt="Visa" />
+                        <img class="me-2" width="80px"
+                             src="{% static 'img/paypal.png' %}"
+                             alt="PayPal acceptance mark" />
+                        <img class="me-2" width="80px"
+                             src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                             alt="American Express" />
+                        <img class="me-2" width="80px"
+                             src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                             alt="Mastercard" />
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li
+                                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                <div>
+                                    <strong style="color: #EAA636 !important;">Total amount</strong>
+                                </div>
+                                <span><strong style="color: #EAA636 !important;">{{item.total_price}} $ USD</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="justify-content: space-between; justify-items: center" class="card-footer d-flex" style="background: gray">
+                        <h5 style="color: #EAA636 !important;">Общая цена: </h5>
+                        <h5 style="color: #EAA636 !important;">{{cart.get_total_price}}</h5>
+                    </div>
+
+                    <div class="card-footer d-flex align-items-center">
+
+                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3">
+                            <a href="{% url 'clear_cart' %}" class="btn btn-light active w-40" style="color: #EAA636 !important;">
+                                Очистить корзину
+                            </a>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3">
+                            <a href="#" class="btn btn-primary active w-40" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                Оформить заказ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3">
-            <a href="#" class="btn btn-primary active w-40" data-bs-toggle="modal" data-bs-target="#modal-report">
-              Оформить заказ
-            </a>
-        </div>
-      </div>
-
     </div>
-  </div>
+</section>
 
-
+<!--starting order-->
 
 <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Оформление заказа</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <form action="{% url 'order_create' %}" method="post">
-          <div class="modal-body">
-                  {% csrf_token %}
-                  {{ form }}
-          </div>
+            <div class="modal-header">
+                <h5 style="color: #EAA636 !important;" class="modal-title">Оформление заказа</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{% url 'order_create' %}" method="post">
+                <div style="display: flex; justify-content: space-between"  class="">
+                    <div style="width: 60%;" class="modal-body">
+                        {% csrf_token %}
+                        <div class="col-12 col-sm-10">
+                            <div style="width: 100%;" class="control-group">
+                                <label style="color: #EAA636 !important;" class="modal-title" class="control-label">{{form.address.label}}</label>
+                                <div style="width: 100%;" class="controls">
+                                    {{form.address}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-10">
+                            <div class="control-group">
+                                <label style="color: #EAA636 !important;" class="modal-title" class="control-label">{{form.postal_code.label}}</label>
+                                <div class="controls">
+                                    {{form.postal_code}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-10">
+                            <div class="control-group">
+                                <label style="color: #EAA636 !important;" class="modal-title" class="control-label">{{form.mobile.label}}</label>
+                                <div class="controls">
+                                    {{form.mobile}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-10">
+                            <div class="control-group">
+                                <label style="color: #EAA636 !important;" class="modal-title" class="control-label">{{form.notice.label}}</label>
+                                <div class="controls">
+                                    {{form.notice}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="modal-footer">
-            <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
-              Закрыть
-            </a>
-            <button type="submit" class="btn btn-primary">
-              Подтвердить оформление
-            </button>
-          </div>
-        </form>
+                    <!--starting little description-->
+
+                    <div style="margin-right: 1rem" class="table-responsive">
+
+                        <table class="table table-bordered border-primary">
+                            <tr>
+                                <th style="color: #EAA636 !important;" scope="col">Quantity</th>
+                                <th style="color: #EAA636 !important;" scope="col">Product</th>
+                                <th style="color: #EAA636 !important;" scope="col">Name</th>
+                                <th style="color: #EAA636 !important;" scope="col">Price</th>
+                            </tr>
+                            {% for item in cart %}
+                            <tr>
+                                <td style="color: #EAA636 !important;">{{ item.quantity }}</td>
+                                <td class="text-center">
+                                        <img width="60px" src="{{ item.product.image.url }}" alt="">
+                                </td>
+                                <td  style="color: #EAA636 !important;">{{ item.product.name }}</td >
+                                <td style="color: #EAA636 !important;">{{ item.total_price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                    </div>
+                    <!--end little description-->
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <a style="color: #EAA636 !important;" href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                        Закрыть
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Подтвердить оформление
+                    </button>
+                </div>
+            </form>
 
         </div>
-      </div>
     </div>
+</div>
+
+<!--edn order-->
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Office Address</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-square btn-outline-light rounded-circle me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Quick Links</h4>
+                <a class="btn btn-link" href="">About Us</a>
+                <a class="btn btn-link" href="">Contact Us</a>
+                <a class="btn btn-link" href="">Our Services</a>
+                <a class="btn btn-link" href="">Terms & Condition</a>
+                <a class="btn btn-link" href="">Support</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Quick Links</h4>
+                <a class="btn btn-link" href="">About Us</a>
+                <a class="btn btn-link" href="">Contact Us</a>
+                <a class="btn btn-link" href="">Our Services</a>
+                <a class="btn btn-link" href="">Terms & Condition</a>
+                <a class="btn btn-link" href="">Support</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Photo Gallery</h4>
+                <div class="row g-2">
+                    <div class="col-4">
+                        <img class="img-fluid bg-light rounded p-1" src="img/product-1.jpg" alt="Image">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light rounded p-1" src="img/product-2.jpg" alt="Image">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light rounded p-1" src="img/product-3.jpg" alt="Image">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light rounded p-1" src="img/product-2.jpg" alt="Image">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light rounded p-1" src="img/product-3.jpg" alt="Image">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid bg-light rounded p-1" src="img/product-1.jpg" alt="Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Copyright Start -->
+<div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                &copy; <a href="#">Your Site Name</a>, All Right Reserved.
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <!--/*** This templates is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the templates without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                <br>Distributed By: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Copyright End -->
+
+<!-- Testimonial End -->
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'dist/js/cart.js' %}">
+</script>
+<script>
+    $(".button-minus").click(function(){
+        let product_id = $(this).attr('data-id')
+        console.log(123)
+        $.ajax({
+            type: "post",
+            url: "ajax/minus/"+product_id+"/"
+        }).done(function(){
+            location.reload();
+        });
+    })
+
+
+    $(".button-plus").click(function(){
+        let product_id = $(this).attr('data-id')
+        $.ajax({
+            type:"post",
+            url: "ajax/add/"+product_id+"/"
+        }).done(function(){
+            location.reload();
+        })
+    })
+</script>
 {% endblock %}
 

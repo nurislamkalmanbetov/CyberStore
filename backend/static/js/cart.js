@@ -75,3 +75,4 @@ function removeItem(removeButton)
     recalculateCart();
   });
 }
+
