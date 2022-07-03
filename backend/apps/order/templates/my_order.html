@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<<div class="container" style="margin-top: 6rem;">
+    <article class="card">
+        <header style="color: #EAA636 !important;" class="card-header"> My Orders / Tracking </header>
+        <div class="card-body" >
+            <h6 style="color: #3f3f3f !important;">Your Order</h6>
+            {% for order in orders %}
+            <article class="card">
+                <div class="card-body row">
+                    <div style="color: #3f3f3f !important;" class="col"> <strong style="color: #3f3f3f !important;">Estimated Delivery time:</strong> <br>29 nov 2019 </div>
+                    <div style="color: #3f3f3f !important;" class="col"> <strong style="color: #3f3f3f !important;">Shipping BY:</strong> <br> BLUEDART, | <i style="color: #3f3f3f !important;" class="fa fa-phone"></i> +1598675986 </div>
+                    <div style="color: #3f3f3f !important;" class="col"> <strong style="color: #3f3f3f !important;">Status:</strong> <br> Picked by the courier </div>
+                    <div style="color: #3f3f3f !important;" class="col"> <strong style="color: #3f3f3f !important;">Tracking #:</strong> <br> BD045903594059 </div>
+                </div>
+            </article>
+            <div class="track">
+                <div class="step active"> <span class="icon"> <i style="color: #3f3f3f !important;" class="fa fa-check"></i> </span> <span style="color: #3f3f3f !important;" class="text">Order confirmed</span> </div>
+                <div class="step active"> <span class="icon"> <i style="color: #3f3f3f !important;" class="fa fa-user"></i> </span> <span style="color: #3f3f3f !important;" class="text"> Picked by courier</span> </div>
+                <div class="step"> <span class="icon"> <i style="color: #3f3f3f !important;" class="fa fa-truck"></i> </span> <span style="color: #3f3f3f !important;" class="text"> On the way </span> </div>
+                <div class="step"> <span class="icon"> <i style="color: #3f3f3f !important;" class="fa fa-box"></i> </span> <span style="color: #3f3f3f !important;" class="text">Ready for pickup</span> </div>
+            </div>
+            <hr>
+            <ul class="row">
+                {% for item in order.orderitem_set.all %}
+                <li class="col-md-4">
+                    <a href="{% url 'product_detail' item.product.id %}">
+                    <figure class="itemside mb-3">
+                        <div class="aside"><img style="width: 100%" src="{{item.product.image.url}}" class="img-sm border"></div>
+                        <figcaption class="info align-self-center">
+                            <p style="color: #3f3f3f !important;" class="title">{{item.product.name}} <br></p>
+                            <span class="text-muted">{{item.product.price}} USD $ </span>
+                            <br>
+                            <span class="text-muted">Quantity: {{item.quantity}} </span>
+                        </figcaption>
+                    </figure>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            <hr>
+            {% endfor %}
+            <a href="#" class="btn btn-warning" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to orders</a>
+        </div>
+    </article>
+</div>
+
+{% endblock %}

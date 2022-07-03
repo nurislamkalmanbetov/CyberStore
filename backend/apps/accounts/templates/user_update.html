@@ -2,13 +2,22 @@
 
 {% block content %}
 
-    <form method="post" enctype="multipart/from-data">
-        <h1> Изменения данных поьзователя </h1>
-        {% csrf_token %}
+<form method="post" enctype="multipart/from-data" style="margin-top: 6rem;">
+    <h1> Change user profile </h1>
+    {% csrf_token %}
+    <label style="color: #EAA636 !important;">Name</label>
+    {{ form.first_name }}
+    <label style="color: #EAA636 !important;">Last name</label>
+    {{ form.last_name }}
 
-        {{ form }}
+    <label style="color: #EAA636 !important;">Middle name</label>
+    {{ form.middle_name }}
 
-        <button class="btn btn-success">Сохранить</button>
-    </form>
+    <label style="color: #EAA636 !important;">Phone</label>
+    {{ form.phone }}
+
+
+    <button class="btn btn-success">Save</button>
+</form>
 
 {% endblock %}

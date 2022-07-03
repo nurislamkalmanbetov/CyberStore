@@ -4,6 +4,8 @@ from django.db import models
 from backend.apps.accounts.models import User
 from backend.apps.product.models import Product
 
+from backend.apps.coupons.models import Coupon
+
 
 class Order(models.Model):
     STATUS_NEW = "new"
@@ -29,6 +31,7 @@ class Order(models.Model):
         choices=ORDER_STATUSES,
         default=STATUS_NEW
     )
+    coupon = models.ForeignKey(Coupon, on_delete=models.DO_NOTHING, null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

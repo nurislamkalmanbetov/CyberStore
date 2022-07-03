@@ -7,5 +7,6 @@ urlpatterns = [
         'create/',
         OrderCreateView.as_view(),
         name="order_create"
-        )
+        ),
+    path('my_order/', MyOrders.as_view(), name='order_list'),
 ]

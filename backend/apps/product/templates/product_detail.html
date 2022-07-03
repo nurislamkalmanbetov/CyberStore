@@ -13,11 +13,10 @@
         <div class="details">
             <div class="content">
                 <h5 style="margin-left: 5px; color: #120f0d !important;">Описание:</h5>
-                <h2 style="margin-left: 5px; color: #120f0d !important;">Jordan Proto-Lyte <br>
-                    <span style="margin-left: 5px; color: #120f0d !important;">Running Collection</span>
+                    <strong style="margin-left: 5px; color: #120f0d !important;">{{product.name|safe}}</strong>
                 </h2>
                 <p style="margin-left: 5px; color: #120f0d !important;">{{product.description|safe }}</p>
-                <p style="margin-left: 5px; color: #120f0d !important;">Цена: {{product.price}}сом</p>
+                <p style="margin-left: 5px; color: #120f0d !important;">Цена: {{product.price}} USD $</p>
                 <a href="{% url 'favorite' product.id %}" class="btn btn-info">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>

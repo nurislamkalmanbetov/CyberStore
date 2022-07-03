@@ -20,7 +20,7 @@
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5" method="post">
               {% csrf_token %}
-              <h2 class="text-uppercase text-center mb-5">Создание аккаунта</h2>
+              <h2 class="text-uppercase text-center mb-5">Register New Account</h2>
               {% if form.errors %}
               {% for field in form %}
                   {% for error in field.errors %}
@@ -36,28 +36,28 @@
 
                   {% csrf_token %}
                 <div class="mb-3">
-                  <label class="form-label">Имя</label>
+                  <label class="form-label">First name</label>
                   {{form.first_name}}
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Фамилия</label>
+                  <label class="form-label">Last name</label>
                   {{form.last_name}}
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Отчество</label>
+                  <label class="form-label">Second name</label>
                   {{form.middle_name}}
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Почтовый адрес</label>
+                  <label class="form-label">Postal code</label>
                   {{form.email}}
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Номер телефона</label>
+                  <label class="form-label">Phone number</label>
                   {{form.phone}}
                 </div>
 
                 <div class="mb-3">
-                  <label class="form-label">Пароль</label>
+                  <label class="form-label">Password</label>
                   <div class="input-group input-group-flat">
                     {{ form.password1  }}
                     <span class="input-group-text">
@@ -68,7 +68,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Повторите пароль</label>
+                  <label class="form-label">Password again</label>
                   <div class="input-group input-group-flat">
                     {{ form.password2  }}
                     <span class="input-group-text">
@@ -80,12 +80,12 @@
                 </div>
 
                 <div class="form-footer">
-                  <button type="submit" class="btn btn-primary w-100">Регистрация</button>
+                  <button type="submit" class="btn btn-primary w-100">Registration</button>
                 </div>
 
               </form>
-              <p class="text-center text-muted mt-5 mb-0">Уже имеется аккаунт? <a href="{% url 'sign_in' %}"
-                    class="fw-bold text-body"><u>Войти на ауккаунт</u></a></p>
+              <p class="text-center text-muted mt-5 mb-0">Have already account? <a href="{% url 'sign_in' %}"
+                    class="fw-bold text-body"><u>Sign in to your account</u></a></p>
 
             </div>
           </div>

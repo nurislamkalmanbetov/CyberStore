@@ -19,7 +19,7 @@
                 <div class="card" style="width:300px ; justify-content:space-evenly ; background-color: #bfe2e9">
                     <img src="{{product.image.url}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 style="margin-left: 5px; color: #EAA636 !important;" class="card-title text-center">{{product.name}}</h5>
+                        <h5 style="margin-left: 5px; color: #3f3f3f !important;" class="card-title text-center">{{product.name}}</h5>
                         <p style="margin-left: 5px; color: #EAA636 !important;" class="card-text text-center">${{product.price}}</p>
                         <div style="margin-left: 30px;">
                             <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-secondary">Learn
@@ -27,7 +27,7 @@
                             {% if request.user.is_authenticated %}
                             <a href="{% url 'favorite' product.id %}" class="btn btn-info"><i class="fas fa-bookmark"></i></a>
                             {% endif %}
-                            <button class="btn btn-outline-primary"><a href="{% url 'add_cart' product.id %}" class=""><i class='fas fa-shopping-bag' style='color:#ffde05;font-size: 25px;'></i></a></button>
+                            <button type="button" class="btn btn-outline-primary add_to_cart" data-id="{{product.id}}"><i class='fas fa-shopping-bag' style='color:#ffde05;font-size: 25px;'></i></button>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         {% if page_obj.has_previous %}
                         <li class="page-item {% if not page_obj.has_previous %} disabled  {% endif %}">
                             <a class="page-link" href="?page={{page_obj.previous_page_number}}" tabindex="-1"
-                                aria-disabled="true">
+                               aria-disabled="true">
                                 Previous
                             </a>
                         </li>
@@ -80,4 +80,18 @@
 
 
 
+{% endblock %}
+
+<!--добавление в корзину оставаясь в product_list-->
+{% block javascript %}
+<script type="text/javascript">
+    $(".add_to_cart").click(function(){
+        let product_id = $(this).attr('data-id')
+        console.log(product_id)
+        $.ajax({
+            type: "get",
+            url: "/cart/add/"+product_id+"/",
+        })
+    })
+</script>
 {% endblock %}

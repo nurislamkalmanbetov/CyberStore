@@ -14,11 +14,11 @@
             <div class="col-md-8">
                 <div class="card mb-4">
 
-                    <div class="card-header py-3" style="background: gray">
+                    <div class="card-header py-3" style="background: #f9e4c3">
                         <h5 style="color: #EAA636 !important;" class="mb-0">Your cart</h5>
                     </div>
                     {% for item in cart %}
-                    <div class="card-body" style="background: #e9ecef">
+                    <div class="card-body" style="background: #f0e9df">
                         <!-- Single item -->
                         <div class="row">
                             <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
@@ -38,7 +38,7 @@
                                 <p><strong style="color: #EAA636 !important;">{{item.product.name}}</strong></p>
                                 <p style="color: #EAA636 !important;">{{item.product.description}}</p>
 
-                                <a class="btn btn-primary btn-sm me-1 mb-2" href="{% url 'remove_cart' item.product.id %}">
+                                <a style="background: brown" class="btn btn-primary btn-sm me-1 mb-2" href="{% url 'remove_cart' item.product.id %}">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </div>
@@ -46,7 +46,7 @@
                             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                 <!-- Quantity -->
                                 <div class="d-flex mb-4" style="max-width: 300px">
-                                    <button class="btn btn-primary px-3 me-2 button-minus" data-id="{{item.product.id}}">
+                                    <button style="background: brown" class="btn btn-primary px-3 me-2 button-minus" data-id="{{item.product.id}}">
                                         <i class="fas fa-minus"></i>
                                     </button>
 
@@ -54,7 +54,7 @@
                                         <label style="color: #EAA636 !important;" class="form-label" for="form1">{{item.quantity}}</label>
                                     </div>
 
-                                    <button class="btn btn-primary px-3 ms-2 button-plus" data-id="{{item.product.id}}">
+                                    <button style="background: brown" class="btn btn-primary px-3 ms-2 button-plus" data-id="{{item.product.id}}">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
@@ -87,10 +87,10 @@
 
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <div class="card-header py-3" style="background: gray">
-                        <h5 class="mb-0">Summary</h5>
+                    <div class="card-header py-3" style="background: #f9e4c3">
+                        <h5 style="color: #EAA636 !important;" class="mb-0">Summary</h5>
                     </div>
-                    <div class="card-body">
+                    <div style="background: #f0e9df" class="card-body">
                         <p><strong style="color: #EAA636 !important;" >We accept</strong></p>
                         <img class="me-2" width="80px"
                              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
@@ -105,36 +105,101 @@
                              src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
                              alt="Mastercard" />
                     </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            <li
-                                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                                <div>
-                                    <strong style="color: #EAA636 !important;">Total amount</strong>
+                    <div style="justify-content: space-between; justify-items: center;" class="card-footer d-flex">
+                        <h5 style="color: #EAA636 !important;">Total price: </h5>
+                        
+<!--                        coupon-->
+                        {% if cart.coupon %}
+                        <h5 style="color: forestgreen !important;">
+                            <s style="color: forestgreen !important;"> {{cart.get_total_price}}</s> USD $
+                        </h5>
+                        {% else %}
+                        <h5 style="color: forestgreen !important;">
+                            {{cart.get_total_price}} USD $
+                        </h5>
+                        {% endif %}
+                        {% if cart.coupon %}
+                        <h5 style="color: #EAA636 !important;">
+                            New price with discount: </h5>
+                        <h5 style="color: forestgreen !important;"> {{cart.get_total_price_after_discount|floatformat:"2" }} </h5>
+                        {% endif %}
+<!--                        coupon-->
+                    </div>
+
+                        <!--    Coupon start-->
+                    <div style="justify-content: space-between; justify-items: center;" class="card-footer d-block">
+                        {% if cart.coupon %}
+                        <tr class="subtotal">
+                            <td>Subtotal</td>
+                            <td colspan="4"></td>
+                            <td class="num">${{ cart.get_total_price|floatformat:"2" }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                "{{ cart.coupon.code }}" coupon
+                                ({{ cart.coupon.discount }}% off)
+                            </td>
+                            <td colspan="4"></td>
+                            <td class="num neg">
+                                - ${{ cart.get_discount|floatformat:"2" }}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        <tr class="total">
+                            <td>Total</td>
+                            <td colspan="4"></td>
+                            <td class="num">
+                                ${{ cart.get_total_price_after_discount|floatformat:"2" }}
+                            </td>
+                        </tr>
+
+                        <strong style="color: #EAA636 !important;">Coupon Number:</strong>
+                        <form style="color: firebrick" action="{% url 'coupons:apply' %}" method="post">
+                            {{ coupon_apply_form }}
+
+                            <button style="background: brown" type="submit">Apply</button>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                    <ul>
+                        {% for item in cart %}
+                        <li style="color: #EAA636 !important;">
+                            <div style="display: flex;">
+                                <div style="color: #EAA636 !important;">
+                                    {{ item.quantity }}x {{ item.product.name }}
                                 </div>
-                                <span><strong style="color: #EAA636 !important;">{{item.total_price}} $ USD</strong></span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div style="justify-content: space-between; justify-items: center" class="card-footer d-flex" style="background: gray">
-                        <h5 style="color: #EAA636 !important;">Общая цена: </h5>
-                        <h5 style="color: #EAA636 !important;">{{cart.get_total_price}}</h5>
-                    </div>
+                                <div>
+                                    <span style="color: #EAA636 !important;">${{ item.total_price|floatformat:"2" }}</span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                        {% if cart.coupon %}
+                        <li style="color: forestgreen !important;">
+                            "{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
+                            <span style="color: forestgreen !important;">- ${{ cart.get_discount|floatformat:"2" }}</span>
+                        </li>
+                        {% endif %}
+                    </ul>
+<!--                    coupon end-->
 
-                    <div class="card-footer d-flex align-items-center">
+
+                    <div style="background: #f9e4c3" class="card-footer d-flex align-items-center">
 
                         <div class="col-6 col-sm-4 col-md-2 col-xl mb-3">
-                            <a href="{% url 'clear_cart' %}" class="btn btn-light active w-40" style="color: #EAA636 !important;">
-                                Очистить корзину
+                            <a style="background: brown" href="{% url 'clear_cart' %}" class="btn btn-primary active w-40" >
+                                Clean Cart
                             </a>
                         </div>
 
                         <div class="col-6 col-sm-4 col-md-2 col-xl mb-3">
-                            <a href="#" class="btn btn-primary active w-40" data-bs-toggle="modal" data-bs-target="#modal-report">
-                                Оформить заказ
+                            <a style="background: brown" href="#" class="btn btn-primary active w-40" data-bs-toggle="modal" data-bs-target="#modal-report">
+                                Create Delivery
                             </a>
                         </div>
                     </div>
+
+
                 </div>
             </div>
 
@@ -211,7 +276,19 @@
                             </tr>
                             {% endfor %}
                         </table>
-
+                        <div style="background: #f9e4c3;">
+                            <div style="display: flex; align-items: center; column-gap: 20px">
+                                <h5 style="color: forestgreen !important;">
+                                    <h5 style="color: #EAA636 !important;">Total price: </h5>
+                                    <s style="color: forestgreen !important;"> {{cart.get_total_price}} USD $</s>
+                                </h5>
+                            </div>
+                            <div style="display: flex; align-items: center; column-gap: 20px">
+                                <h5 style="color: #EAA636 !important;">
+                                    With discount: </h5>
+                                <h5 style="color: forestgreen !important;"> {{cart.get_total_price_after_discount|floatformat:"2" }} USD $</h5>
+                            </div>
+                        </div>
                     </div>
                     <!--end little description-->
                 </div>
@@ -232,7 +309,7 @@
     </div>
 </div>
 
-<!--edn order-->
+<!--end order-->
 
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-light footer my-6 mb-0 py-5 wow fadeIn" data-wow-delay="0.1s">

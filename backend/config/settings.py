@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'backend.apps.accounts',
     'backend.apps.order',
     'backend.apps.product',
-    'backend.apps.cart'
+    'backend.apps.cart',
+    'backend.apps.coupons',
 ]
 
 MIDDLEWARE = [

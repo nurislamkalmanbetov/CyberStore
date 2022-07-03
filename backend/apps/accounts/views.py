@@ -61,8 +61,3 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.kwargs.get('pk') == self.request.user.pk:
             return True
         return False
-
-
-
-
-

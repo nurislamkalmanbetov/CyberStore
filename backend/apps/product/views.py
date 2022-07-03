@@ -41,7 +41,7 @@ class ProductListView(ListView, View):
     template_name = "product_list.html"
     model = Product
     # context_object_name = 'products'
-    paginate_by = 8
+    paginate_by = 16
     #стандартное имя списка продуктов в шаблоне
     # для ListView - object_list
 
