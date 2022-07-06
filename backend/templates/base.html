@@ -44,6 +44,8 @@
 </head>
 <body style="background-color: white !important;">
 <style>
+    {% block style %}
+    {% endblock %}
     .dropbtn {
         background-color: #3498DB;
         color: white;
@@ -87,6 +89,7 @@
 
     /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
     .show {display:block;}
+
 </style>
 
 
@@ -196,7 +199,7 @@
             <a href="{% url 'contact' %}" class="nav-item nav-link"><strong style="color: #EAA636 !important;">Contacts</strong></a>
         </div>
 <!--        Search field-->
-        <form name="filter" method="get" action="{% url 'product_list' %}" class="search-product pos-relative bo4 of-hidden">
+        <form name="filter" method="get" action="{% url 'product_list'  %}" class="search-product pos-relative bo4 of-hidden">
             <input style="color: #120f0d !important;" class="s-text7 size6 p-l-23 p-r-50" type="search" name="search" placeholder="Search Products...">
 
             <button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">

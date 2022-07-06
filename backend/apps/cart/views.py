@@ -99,3 +99,5 @@ def minus_cart(request, pk):
         )
         return JsonResponse({"message": "Ok"}, status=200)
     return JsonResponse({"message": "Bad Request"}, status=400)
+
+

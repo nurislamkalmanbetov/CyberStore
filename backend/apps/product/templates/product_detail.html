@@ -8,21 +8,21 @@
 
 
 <div class="container" style="margin-top: 100px">
-    <div style="display: flex; justify-content: center; margin-top:4rem !important;" class="imgBx">
+    <div style="display: flex; justify-content: center;" class="imgBx">
         <img style="height: 70vh" src="{{product.image.url}}" alt="">
         <div class="details">
             <div class="content">
-                <h5 style="margin-left: 5px; color: #120f0d !important;">Описание:</h5>
+                <h5 style="margin-left: 5px; color: #120f0d !important; margin-top: 4rem;">Product description:</h5>
                     <strong style="margin-left: 5px; color: #120f0d !important;">{{product.name|safe}}</strong>
                 </h2>
-                <p style="margin-left: 5px; color: #120f0d !important;">{{product.description|safe }}</p>
-                <p style="margin-left: 5px; color: #120f0d !important;">Цена: {{product.price}} USD $</p>
-                <a href="{% url 'favorite' product.id %}" class="btn btn-info">
+                <p style="margin-left: 5px; color: #120f0d !important; margin-top:4rem">{{product.description|safe }}</p>
+                <p style="margin-left: 5px; color: #120f0d !important; margin-top:4rem">Price: {{product.price}} USD $</p>
+                <a href="{% url 'favorite' product.id %}" class="btn btn-info" style="margin-top: 4rem;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" style="color: #ff6219"/>
                     </svg>
                 </a>
-                <a href="{% url 'add_cart' product.id %}" class="btn btn-bitbucket w-15">
+                <a href="{% url 'add_cart' product.id %}" class="btn btn-bitbucket w-15" style="margin-top: 4rem; background: #ffecb5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="orange" class="bi bi-bag-check" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                         <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
@@ -32,6 +32,7 @@
         </div>
     </div>
 </div>
+
 
 
 
