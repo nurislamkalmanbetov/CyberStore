@@ -14,7 +14,7 @@
             <div class="col-md-8">
                 <div class="card mb-4">
 
-                    <div class="card-header py-3" style="background: #f9e4c3">
+                    <div class="card-header py-3" style="background: #f9e4c3; text-align: center">
                         <h5 style="color: #EAA636 !important;" class="mb-0">Your cart</h5>
                     </div>
                     {% for item in cart %}
@@ -76,9 +76,14 @@
                     {% empty %}
                     <tr>
                         <td>
-                            <strong  style="color: #EAA636 !important;">
+                            <strong  style="color: #EAA636 !important; margin-top: 3rem; text-align: center">
                                 Ваша корзина пустая
                             </strong>
+                            <div class="col-6 col-sm-4 col-md-2 col-xl mb-3">
+                                <a style="background: orange" href="{% url 'product_list' %}" class="btn btn-primary active w-40" >
+                                    Go to Product's
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     {% endfor %}
